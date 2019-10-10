@@ -1,0 +1,37 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test
+    username: root
+    password: 1234
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      stat-view-servlet:
+        login-username: durid
+        login-password: 1234
+
+#jetcache缓存配置
+jetcache:
+  statIntervalMinutes: 15 #统计间隔，0表示不统计
+  areaInCacheName: false #jetcache-anno把cacheName作为远程缓存key前缀，2.4.3以前的版本总是把areaName加在cacheName中，因此areaName也出现在key前缀中。2.4.4以后可以配置，为了保持远程key兼容默认值为true，但是新项目的话false更合理些。
+  hidePackages: com #@Cached和@CreateCache自动生成name的时候，为了不让name太长，hiddenPackages指定的包名前缀被截掉。默认无
+  local: #本级缓存
+    default:
+      type: linkedhashmap #缓存类型。tair、redis为当前支持的远程缓存；linkedhashmap、caffeine为当前支持的本地缓存类型
+      keyConvertor: fastjson
+      limit: 100 #每个缓存实例的最大元素的全局配置，仅local类型的缓存需要指定。注意是每个缓存实例的限制，而不是全部
+      expireAfterWriteInMillis: 100000 #以毫秒为单位指定超时时间的全局配置
+#  remote: #远程缓存
+#    default:
+#      type: redis.lettuce
+#      keyConvertor: fastjson
+#      valueEncoder: java #序列化器的全局配置。仅remote类型的缓存需要指定，可选java和kryo
+#      valueDecoder: java
+#      poolConfig:
+#        minIdle: 5
+#        maxIdle: 20
+#        maxTotal: 50
+#      uri:  #redis的地址，可集群
+#        - "redis://127.0.0.1:6379"
+mybatis:
+  mapper-locations:
