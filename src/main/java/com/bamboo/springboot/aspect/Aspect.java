@@ -1,4 +1,4 @@
-package com.bamboo.demo.aspect.controller;
+package com.bamboo.springboot.aspect;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

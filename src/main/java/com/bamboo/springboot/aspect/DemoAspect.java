@@ -1,4 +1,4 @@
-package com.bamboo.demo.aspect;
+package com.bamboo.springboot.aspect;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
@@ -8,6 +8,7 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestParam;
+
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 import java.util.HashMap;
@@ -18,7 +19,7 @@ import java.util.HashMap;
 public class DemoAspect {
 
     //类和方法各需一个*
-    @Pointcut("execution(public * com.bamboo.demo.aspect.controller.*.*(..))")
+    @Pointcut("execution(public * com.bamboo.springboot.aspect.*.*(..))")
     private void demo() {
     }
 
