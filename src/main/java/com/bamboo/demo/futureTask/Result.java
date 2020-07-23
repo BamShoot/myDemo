@@ -1,4 +1,4 @@
-package com.bamboo.springboot.futureTask;
+package com.bamboo.demo.futureTask;
 
 import lombok.Data;
 

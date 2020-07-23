@@ -1,4 +1,4 @@
-package com.bamboo.springboot.config;
+package com.bamboo.demo.common;
 
 import com.github.pagehelper.PageHelper;
 import org.springframework.context.annotation.Bean;

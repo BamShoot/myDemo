@@ -1,7 +1,8 @@
-package com.bamboo.springboot.common;
+package com.bamboo.demo.es;
 
 
 import com.alibaba.fastjson.JSON;
+import com.bamboo.demo.common.SpringUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.action.admin.indices.create.CreateIndexRequest;
 import org.elasticsearch.action.admin.indices.create.CreateIndexResponse;

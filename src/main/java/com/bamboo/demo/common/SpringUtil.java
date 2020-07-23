@@ -1,4 +1,4 @@
-package com.bamboo.springboot.common;
+package com.bamboo.demo.common;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;

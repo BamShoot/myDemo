@@ -1,12 +1,11 @@
-package com.bamboo.springboot.common;
+package com.bamboo.demo.jetcache;
 
 import com.alicp.jetcache.Cache;
 import com.alicp.jetcache.CacheGetResult;
 import com.alicp.jetcache.CacheResult;
 import com.alicp.jetcache.anno.CacheType;
 import com.alicp.jetcache.anno.CreateCache;
-import com.bamboo.springboot.test.CacheTest;
-import com.bamboo.springboot.test.User;
+import com.bamboo.demo.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,9 +14,9 @@ import java.util.concurrent.TimeUnit;
 
 
 @RestController
-public class CacheUtil {
+public class CacheTest {
     @Autowired
-    CacheTest cacheTest;
+    CacheService cacheService;
 
     @CreateCache(name = "a", expire = 10, cacheType = CacheType.REMOTE)
     private Cache<String, Long> cache;
@@ -41,13 +40,13 @@ public class CacheUtil {
 
     @RequestMapping("test4")
     public void test3(long id) {
-        User user = cacheTest.getUserById(id);
+        User user = cacheService.getUserById(id);
         System.out.println(user.toString());
     }
 
     @RequestMapping("test5")
     public void test4(long id) {
-        cacheTest.deleteUser(id);
+        cacheService.deleteUser(id);
     }
 
     @RequestMapping("test6")
@@ -55,11 +54,11 @@ public class CacheUtil {
         User user = new User();
         user.setId(1L);
         user.setUsername("da");
-        cacheTest.updateUser(user);
+        cacheService.updateUser(user);
     }
 
     @RequestMapping("test7")
     public void test6(long id) {
-        System.out.println(cacheTest.getMap(id));
+        System.out.println(cacheService.getMap(id));
     }
 }

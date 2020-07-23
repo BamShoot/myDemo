@@ -1,16 +1,14 @@
-package com.bamboo.springboot.test;
+package com.bamboo.demo.es;
 
 
-import com.bamboo.springboot.common.ESHandler;
+import com.bamboo.demo.test.Test;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Map;
 
 @RestController
 public class ESTest {

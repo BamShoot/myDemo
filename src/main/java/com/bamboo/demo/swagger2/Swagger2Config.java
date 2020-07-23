@@ -1,4 +1,4 @@
-package com.bamboo.springboot.config;
+package com.bamboo.demo.swagger2;
 
 import io.swagger.annotations.ApiOperation;
 import org.springframework.context.annotation.Bean;

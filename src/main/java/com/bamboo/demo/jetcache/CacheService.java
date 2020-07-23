@@ -1,11 +1,10 @@
-package com.bamboo.springboot.test;
+package com.bamboo.demo.jetcache;
 
 import com.alicp.jetcache.anno.CacheInvalidate;
 import com.alicp.jetcache.anno.CacheType;
 import com.alicp.jetcache.anno.CacheUpdate;
 import com.alicp.jetcache.anno.Cached;
-import lombok.Data;
-import org.springframework.context.annotation.Bean;
+import com.bamboo.demo.entity.User;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -16,7 +15,7 @@ import java.util.Map;
  * 2、调用缓存的方法时，该类必须通过spring ioc获取
  */
 @Component
-public class CacheTest {
+public class CacheService {
 
     @Cached(name = "userCache.", key = "#id", expire = 3600, cacheType = CacheType.REMOTE)
     public User getUserById(long id) {

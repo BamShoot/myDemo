@@ -1,4 +1,4 @@
-package com.bamboo.springboot.test;
+package com.bamboo.demo.entity;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -17,4 +17,6 @@ public class User implements Serializable {
 
     @ApiModelProperty("密码")
     String password;
+
+
 }

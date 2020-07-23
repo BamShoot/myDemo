@@ -1,4 +1,4 @@
-package com.bamboo.springboot.aspect;
+package com.bamboo.demo.aspect;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
@@ -19,7 +19,7 @@ import java.util.HashMap;
 public class DemoAspect {
 
     //类和方法各需一个*
-    @Pointcut("execution(public * com.bamboo.springboot.aspect.*.*(..))")
+    @Pointcut("execution(public * com.bamboo.demo.aspect.*.*(..))")
     private void demo() {
     }
 

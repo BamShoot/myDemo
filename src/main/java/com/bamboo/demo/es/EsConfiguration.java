@@ -1,4 +1,4 @@
-package com.bamboo.springboot.config;
+package com.bamboo.demo.es;
 
 
 import org.apache.http.HttpHost;

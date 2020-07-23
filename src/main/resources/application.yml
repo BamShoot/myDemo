@@ -34,4 +34,4 @@ jetcache:
 #      uri:  #redis的地址，可集群
 #        - "redis://127.0.0.1:6379"
 mybatis:
-  mapper-locations:
+  mapper-locations: classpath:mapper/*.xml

@@ -1,13 +1,13 @@
-package com.bamboo.springboot.test;
+package com.bamboo.demo.swagger2;
 
+import com.bamboo.demo.entity.User;
 import io.swagger.annotations.*;
 import org.springframework.web.bind.annotation.*;
-import springfox.documentation.annotations.ApiIgnore;
 
 
 @RestController
 @RequestMapping("/api/v1/users")
-@Api(tags = "user", description = "user api描述")
+@Api(tags = "user")
 public class SwaggerController {
 
     @ApiOperation(value = "用户登录", notes = "用户登录接口")
