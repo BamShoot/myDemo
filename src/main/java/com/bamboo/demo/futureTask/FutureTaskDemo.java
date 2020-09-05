@@ -7,8 +7,10 @@ import java.util.concurrent.*;
 
 public class FutureTaskDemo {
 
+
     public static void main(String[] args) throws Exception{
-        ExecutorService executor = Executors.newFixedThreadPool(10);
+        ThreadPoolExecutor executor = new ThreadPoolExecutor(5, 20, 1, TimeUnit.MINUTES, new ArrayBlockingQueue<>(10), new ThreadPoolExecutor.CallerRunsPolicy());
+//        ExecutorService executor = Executors.newFixedThreadPool(10);
         ArrayList<FutureTask<Result>> list=new ArrayList();
         for(int i=0;i<50;i++){
             MyTask myTask = new MyTask(i);

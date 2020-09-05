@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
-import java.util.HashMap;
 
 
 @Aspect
@@ -40,18 +39,5 @@ public class DemoAspect {
         return result;
     }
 
-
-    public String findReplaceString(String S, int[] indexes, String[] sources, String[] targets) {
-        int len=indexes.length;
-        HashMap map=new HashMap();
-        for(int i=0;i<len;i++){
-
-            String s1 = S.substring(indexes[i], sources[i].length());
-            S = S.replaceFirst(s1, i + "");
-            map.put(i,s1);
-
-        }
-
-        return null;
-    }
+    
 }

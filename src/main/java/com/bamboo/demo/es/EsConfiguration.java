@@ -60,8 +60,7 @@ public class EsConfiguration {
                 return httpClientBuilder;
             }
         });
-        RestHighLevelClient client = new RestHighLevelClient(builder);
-        return client;
+        return new RestHighLevelClient(builder);
     }
 
 

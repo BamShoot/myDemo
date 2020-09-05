@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <child>
+        <name>本地护照办证类别</name>
+        <options>
+            <item xmlns="11">首次申请证件</item>
+            <item xmlns="13">过期申领</item>
+            <item xmlns="21">补发证件</item>
+            <item xmlns="31">证件到期换发</item>
+            <item xmlns="32">证件损坏换发</item>
+            <item xmlns="33">内页用完换发</item>
+            <item xmlns="34">资料更改换证</item>
+            <item xmlns="35">照片错误换证</item>
+            <item xmlns="12">吊销首次申领</item>
+        </options>
+    </child>
+    <child>
+        <name>异地护照办证类别</name>
+        <options>
+            <item xmlns="11">首次申请证件</item>
+            <item xmlns="13">过期申领</item>
+            <item xmlns="21">补发证件</item>
+            <item xmlns="31">证件到期换发</item>
+            <item xmlns="32">证件损坏换发</item>
+            <item xmlns="33">内页用完换发</item>
+            <item xmlns="34">资料更改换证</item>
+            <item xmlns="35">照片错误换证</item>
+            <item xmlns="12">吊销首次申领</item>
+        </options>
+    </child>
+    <child>
+        <name>本地港澳双程办证类别</name>
+        <options>
+            <item xmlns="11">首次申请证件</item>
+            <item xmlns="13">过期申领</item>
+            <item xmlns="21">补发证件</item>
+            <item xmlns="31">证件到期换发</item>
+            <item xmlns="32">证件损坏换发</item>
+            <item xmlns="33">内页用完换发</item>
+            <item xmlns="34">资料更改换证</item>
+            <item xmlns="35">照片错误换证</item>
+            <item xmlns="12">吊销首次申领</item>
+        </options>
+    </child>
+    <child>
+        <name>异地港澳双程办证类别</name>
+        <options>
+            <item xmlns="11">首次申请证件</item>
+            <item xmlns="13">过期申领</item>
+            <item xmlns="21">补发证件</item>
+            <item xmlns="31">证件到期换发</item>
+            <item xmlns="32">证件损坏换发</item>
+            <item xmlns="33">内页用完换发</item>
+            <item xmlns="34">资料更改换证</item>
+            <item xmlns="35">照片错误换证</item>
+            <item xmlns="81">单独签注</item>
+            <item xmlns="12">吊销首次申领</item>
+        </options>
+    </child>
+    <child>
+        <name>本地大陆证办证类别</name>
+        <options>
+            <item xmlns="11">首次申领</item>
+            <item xmlns="12">吊销首次申领</item>
+            <item xmlns="13">过期申请</item>
+            <item xmlns="21">补发证件</item>
+            <item xmlns="31">证件到期换发</item>
+            <item xmlns="32">证件损坏换发</item>
+            <item xmlns="33">内页用完换发</item>
+            <item xmlns="34">资料更改换证</item>
+            <item xmlns="35">照片错误换证</item>
+            <item xmlns="81">单独签注</item>
+        </options>
+    </child>
+    <child>
+        <name>异地大陆证办证类别</name>
+        <options>
+            <item xmlns="11">首次申领</item>
+            <item xmlns="12">吊销首次申领</item>
+            <item xmlns="13">过期申请</item>
+            <item xmlns="21">补发证件</item>
+            <item xmlns="31">证件到期换发</item>
+            <item xmlns="32">证件损坏换发</item>
+            <item xmlns="33">内页用完换发</item>
+            <item xmlns="34">资料更改换证</item>
+            <item xmlns="35">照片错误换证</item>
+            <item xmlns="81">单独签注</item>
+        </options>
+    </child>
+</root>

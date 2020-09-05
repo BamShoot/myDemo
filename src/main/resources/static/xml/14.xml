@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <codeGroup dmlb="本地港澳双程签注种类">
+        <code value="1B" dmmc="个人旅游"/>
+    </codeGroup>
+    <codeGroup dmlb="异地港澳双程签注种类">
+        <code value="1B" dmmc="个人旅游"/>
+        <code value="12" dmmc="团队旅游"/>
+    </codeGroup>
+    <codeGroup dmlb="本地大陆证签注种类">
+        <code value="25" dmmc="团队旅游"/>
+        <code value="2B" dmmc="赴台个人旅游"/>
+    </codeGroup>
+    <codeGroup dmlb="异地大陆证签注种类">
+        <code value="2B" dmmc="赴台个人旅游"/>
+    </codeGroup>
+</root>

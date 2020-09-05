@@ -4,11 +4,7 @@ package com.bamboo.demo.es;
 import com.alibaba.fastjson.JSON;
 import com.bamboo.demo.common.SpringUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.elasticsearch.action.admin.indices.create.CreateIndexRequest;
-import org.elasticsearch.action.admin.indices.create.CreateIndexResponse;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
-import org.elasticsearch.action.admin.indices.delete.DeleteIndexResponse;
-import org.elasticsearch.action.admin.indices.get.GetIndexRequest;
 import org.elasticsearch.action.delete.DeleteRequest;
 import org.elasticsearch.action.delete.DeleteResponse;
 import org.elasticsearch.action.get.GetRequest;
@@ -17,10 +13,14 @@ import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
+import org.elasticsearch.action.support.master.AcknowledgedResponse;
 import org.elasticsearch.action.update.UpdateRequest;
 import org.elasticsearch.action.update.UpdateResponse;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
+import org.elasticsearch.client.indices.CreateIndexRequest;
+import org.elasticsearch.client.indices.CreateIndexResponse;
+import org.elasticsearch.client.indices.GetIndexRequest;
 import org.elasticsearch.common.xcontent.XContentType;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
@@ -35,7 +35,8 @@ import java.util.Map;
 @Slf4j
 public class ESHandler {
 
-    private static RestHighLevelClient client = SpringUtil.getBean(RestHighLevelClient.class);
+    private static final RestHighLevelClient client = SpringUtil.getBean(RestHighLevelClient.class);
+
 
     /**
      * 查询索引是否存在
@@ -45,7 +46,7 @@ public class ESHandler {
      * @throws IOException
      */
     public static boolean existsInndex(String index) throws IOException {
-        GetIndexRequest request = new GetIndexRequest().indices(index);
+        GetIndexRequest request = new GetIndexRequest(index);
         return client.indices().exists(request, RequestOptions.DEFAULT);
     }
 
@@ -77,8 +78,8 @@ public class ESHandler {
             return true;
         }
         DeleteIndexRequest request = new DeleteIndexRequest(index);
-        DeleteIndexResponse response = client.indices().delete(request, RequestOptions.DEFAULT);
-        return response.isAcknowledged();
+        AcknowledgedResponse delete = client.indices().delete(request, RequestOptions.DEFAULT);
+        return delete.isAcknowledged();
     }
 
 

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+<!-- 	<flag>1</flag>
+	<apply xxlsh="8020180108828443" ywlx="110" bzlx="首次" zwxm="徐旭东"
+		sfzhm="320381199104224413" spjg="预约审核中" spbz="" pdyysld="" pdyyrq=""
+		pdyysd="" ydbzsflb="本市居民" /> -->
+
+
+	<flag>1</flag>
+	<apply xxlsh="8020180108828443" ywlx="110" bzlx="首次" zwxm="徐旭东"
+		sfzhm="320381199104224413" spjg="预约审核未通过"
+		spbz="非本市户籍人员，请选择外省市户籍人员办理网上约(请核查身份证号码和姓名是否填写正确)!" pdyysld="" pdyyrq=""
+		pdyysd="" ydbzsflb="本市居民" />
+</root>
