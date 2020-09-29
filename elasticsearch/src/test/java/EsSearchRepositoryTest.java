@@ -1,5 +1,5 @@
 import com.alibaba.fastjson.JSONObject;
-import com.bamboo.AdminApplication;
+import com.bamboo.EsApplication;
 import com.bamboo.es.Article;
 import com.bamboo.es.EsSearchRepositoryImpl;
 import com.bamboo.es.EsUtil;
@@ -15,7 +15,7 @@ import java.util.List;
 
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = AdminApplication.class)
+@SpringBootTest(classes = EsApplication.class)
 public class EsSearchRepositoryTest {
 
     @Autowired

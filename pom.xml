@@ -6,6 +6,7 @@
     <modules>
         <module>elasticsearch</module>
         <module>old</module>
+        <module>kafka</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
