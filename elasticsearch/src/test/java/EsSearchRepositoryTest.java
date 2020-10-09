@@ -48,6 +48,7 @@ public class EsSearchRepositoryTest {
     public void test4(){
 
         HashMap<String, Object> must = new HashMap<>();
+        must.put("title","教");
         List<Article> search = EsUtil.search(esTemplate,must, null, null, null, null, Article.class);
         System.out.println(JSONObject.toJSONString(search));
     }

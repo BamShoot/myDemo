@@ -42,7 +42,7 @@ public class EsSearchRepositoryImpl {
 
     public void findByTitle() {
         //无需实现类，spring data根据方法名，自动生成实现类
-        List<Article> articles = repository.findByTitle("srpig教程");
+        List<Article> articles = repository.findByTitle("srpig");
         articles.forEach(System.out::println);
     }
 
