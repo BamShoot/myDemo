@@ -3,6 +3,8 @@ package com.bamboo.es;
 import com.alibaba.fastjson.JSONObject;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.search.aggregations.AggregationBuilders;
+import org.elasticsearch.search.aggregations.bucket.terms.TermsAggregationBuilder;
 import org.elasticsearch.search.sort.SortBuilders;
 import org.elasticsearch.search.sort.SortOrder;
 import org.springframework.data.domain.PageRequest;
@@ -23,7 +25,6 @@ import java.util.stream.Collectors;
 public class EsUtil {
 
 
-
     /**
      * 查询数据
      *
@@ -35,11 +36,11 @@ public class EsUtil {
      * @return
      * @throws IOException
      */
-    public static <T> List<T> search(ElasticsearchRestTemplate esTemplate,Map<String, Object> must,
+    public static <T> List<T> search(ElasticsearchRestTemplate esTemplate, Map<String, Object> must,
                                      Map<String, Object> mustNot, Map<String, Object> should, Integer page,
                                      Integer size, Class<T> clazz) {
         if (clazz == null) {
-            return (List<T>) search( esTemplate,must, mustNot, should, page, size, Map.class);
+            return (List<T>) search(esTemplate, must, mustNot, should, page, size, Map.class);
         }
         BoolQueryBuilder queryBuilder = QueryBuilders.boolQuery();
 
@@ -61,9 +62,13 @@ public class EsUtil {
             should.forEach((k, v) -> queryBuilder.should(QueryBuilders.matchQuery(k, v)));
         }
 
+        //范围查询 gte：大于等于 gt：大于  lte：小于等于  lt：小于
+        QueryBuilders.rangeQuery("age").gte(30);
+
         //NativeSearchQueryBuilder:将连接条件和聚合函数等组合
         NativeSearchQueryBuilder nativeSearchQueryBuilder = new NativeSearchQueryBuilder();
         nativeSearchQueryBuilder.withQuery(queryBuilder);
+
         //分页查询
         if (page != null && size != null) {
             nativeSearchQueryBuilder.withPageable(PageRequest.of(page, size));
@@ -73,11 +78,13 @@ public class EsUtil {
         nativeSearchQueryBuilder.withSort(SortBuilders.fieldSort("postTime").order(SortOrder.DESC));
         nativeSearchQueryBuilder.withSort(SortBuilders.fieldSort("id"));
 
+        //按某个字段分组
+        TermsAggregationBuilder field = AggregationBuilders.terms("group_name").field("name");
+        nativeSearchQueryBuilder.addAggregation(field);
 
 
         SearchHits<T> searchHits = esTemplate.search(nativeSearchQueryBuilder.build(), clazz);
         List<T> collect = searchHits.get().map(SearchHit::getContent).collect(Collectors.toList());
-
 
 
         System.out.println(JSONObject.toJSONString(searchHits));
@@ -85,7 +92,6 @@ public class EsUtil {
 
         return collect;
     }
-
 
 
 }

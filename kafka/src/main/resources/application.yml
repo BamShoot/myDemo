@@ -25,3 +25,8 @@ spring:
       auto-commit-interval: 100
       #在kafka/config文件的consumer.properties中有配置
       group-id: test-consumer-group
+      max-poll-records: 2
+
+    listener:
+      type: batch
+

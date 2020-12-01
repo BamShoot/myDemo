@@ -1,5 +1,6 @@
 package com.bamboo.es;
 
+
 import com.alibaba.fastjson.annotation.JSONField;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,7 +16,7 @@ import java.util.Date;
 
 /**
  * 　@Document 作用在类，标记实体类为文档对象，一般有两个属性
- * 　　　indexName：对应索引库名称
+ * 　　　indexName：对应索引库名称，必须小写
  * 　　　shards：分片数量，默认1
  * 　　　replicas：副本数量，默认1
  */

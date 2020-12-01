@@ -1,5 +1,6 @@
 package com.bamboo.kafka;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -21,6 +22,7 @@ import java.util.List;
  */
 @Component
 @EnableScheduling
+@Slf4j
 public class KafkaConsumer {
 
     @Autowired
@@ -45,9 +47,15 @@ public class KafkaConsumer {
      *              partitionOffsets = @PartitionOffset(partition = "1", initialOffset = "8"))
      *     })
      */
-    @KafkaListener(topics = {KafkaConfig.TOPIC1})
+    @KafkaListener(topics = "consumer2")
     public void onMessage(ConsumerRecord<String, Object> record) {
-        System.out.println("简单消费：类别-" + record.topic() + "--分区-" + record.partition() + "--内容-" + record.value());
+        try {
+            System.out.println("简单消费：类别-" + record.topic() + "--分区-" + record.partition() + "--内容-" + record.value());
+            int i = Integer.parseInt(record.value().toString());
+
+        } catch (Exception e) {
+            log.error("error: {}", e.getMessage(), e);
+        }
     }
 
     /**
@@ -55,7 +63,7 @@ public class KafkaConsumer {
      *      1、设置批量消费：spring.kafka.listener.type=batch
      *      2、批量消费每次最多消费多少条消息：spring.kafka.consumer.max-poll-records=50
      */
-    @KafkaListener(id = "consumer2", groupId = "felix-group", topics = "topic1")
+    @KafkaListener(id = "consumer2", groupId = "felix-group", topics = "consumer2")
     public void onMessage(List<ConsumerRecord<String, Object>> records) {
     }
 
@@ -69,14 +77,24 @@ public class KafkaConsumer {
     @Bean
     public ConsumerAwareListenerErrorHandler consumerAwareErrorHandler() {
         return (message, exception, consumer) -> {
-            System.out.println("消费异常：" + message.getPayload());
+            log.error("消费异常，消息：{}",message.getPayload());
+            //消费单条消息
+            //ConsumerRecord payload = (ConsumerRecord)message.getPayload();
+
+            //批量消费
+            List<ConsumerRecord> payload = (List<ConsumerRecord>)message.getPayload();
             return null;
         };
     }
 
-    @KafkaListener(topics = "consumer2", errorHandler = "consumerAwareErrorHandler")
-    public void onMessage1(ConsumerRecord<String, Object> record) throws Exception {
-        throw new Exception("简单消费-模拟异常");
+    @KafkaListener(topics = {"consumer2"}, errorHandler = "consumerAwareErrorHandler")
+    public void onMessage1(ConsumerRecord<String, Object> record) throws Exception{
+        int i = Integer.parseInt(record.value().toString());
+    }
+
+    @KafkaListener(topics = {KafkaConfig.TOPIC1}, errorHandler = "consumerAwareErrorHandler")
+    public void onMessage2(List<ConsumerRecord<String, Object>> records) {
+        records.forEach(record->Integer.parseInt(record.value().toString()));
     }
 
 
@@ -97,7 +115,7 @@ public class KafkaConsumer {
         return factory;
     }
 
-    @KafkaListener(topics = "consumer2", errorHandler = "filterContainerFactory")
+    @KafkaListener(topics = "consumer2", containerFactory = "filterContainerFactory")
     public void onMessage2(ConsumerRecord<String, Object> record) {
         System.out.println(record.value());
     }
@@ -127,7 +145,8 @@ public class KafkaConsumer {
     // 监听器容器工厂(设置禁止KafkaListener自启动)
     @Bean
     public ConcurrentKafkaListenerContainerFactory<String, Object> delayContainerFactory() {
-        ConcurrentKafkaListenerContainerFactory<String, Object> container = new ConcurrentKafkaListenerContainerFactory<>();
+        ConcurrentKafkaListenerContainerFactory<String, Object> container =
+                new ConcurrentKafkaListenerContainerFactory<>();
         container.setConsumerFactory(consumerFactory);
         //禁止KafkaListener自启动
         container.setAutoStartup(false);
@@ -142,9 +161,9 @@ public class KafkaConsumer {
 
     //定时启动监听器
     @Scheduled(cron = "0 42 11 * * ?")
-    public void start(){
+    public void start() {
         //"timingConsumer"是@KafkaListener注解后面设置的监听器ID,标识这个监听器
-        if(!registry.getListenerContainer("timingConsumer").isRunning()){
+        if (!registry.getListenerContainer("timingConsumer").isRunning()) {
             registry.getListenerContainer("timingConsumer").start();
         }
         registry.getListenerContainer("timingConsumer").resume();
